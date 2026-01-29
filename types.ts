@@ -1,4 +1,3 @@
-
 export interface Service {
   id: string;
   title: string;
@@ -26,6 +25,8 @@ export interface Project {
   category: string;
   image: string;
   tags: string[];
+  github?: string;
+  liveUrl?: string;
 }
 
 export interface ProcessStep {

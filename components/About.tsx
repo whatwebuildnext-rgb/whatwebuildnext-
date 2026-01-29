@@ -32,7 +32,7 @@ export const About: React.FC = () => {
               Engineered for the <span className="text-gradient">Next Generation</span> of Web.
             </h2>
             <p className="text-slate-400 text-lg mb-8 leading-relaxed font-light">
-              Founded in 2025, What we build next. Solutions was born from a simple observation: the bridge between complex enterprise logic and intuitive user interface was often broken. We fixed it.
+              Founded in 2024, What we build next. Solutions was born from a simple observation: the bridge between complex enterprise logic and intuitive user interface was often broken. We fixed it.
             </p>
             <p className="text-slate-400 text-lg mb-10 leading-relaxed font-light">
               We specialize in <strong className="font-bold">"heavy-lifting"</strong> frontend engineering. When standard libraries aren't enough, we build custom solutions that push the boundaries of what's possible in a browser.
@@ -57,10 +57,10 @@ export const About: React.FC = () => {
           </motion.div>
 
           <div className="grid grid-cols-2 gap-4 lg:gap-8">
-            <StatCard label="Deployments" value="5+" icon={Zap} />
+            <StatCard label="Deployments" value="10+" icon={Zap} />
             <StatCard label="Engineers" value="6+" icon={Users} />
             <StatCard label="Client Uptime" value="99.9%" icon={ShieldCheck} />
-            <StatCard label="Awards" value="10" icon={Target} />
+            <StatCard label="Awards" value="5" icon={Target} />
           </div>
         </div>
       </div>

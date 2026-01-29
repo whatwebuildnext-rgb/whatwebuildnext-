@@ -58,7 +58,7 @@ export const SERVICES: Service[] = [
 export const TEAM: TeamMember[] = [
   {
     id: "1",
-    name: "naveen saini",
+    name: "Naveen Saini",
     role: "Full Stack Developer",
     image: "https://picsum.photos/seed/alex/400/400",
     skills: [
@@ -92,9 +92,9 @@ export const TEAM: TeamMember[] = [
   },
   {
     id: "2",
-    name: "ayush chohan",
-    role: "Frontend Specialist",
-    image: "https://picsum.photos/seed/sarah/400/400",
+    name: "Ayush Singh Chohan",
+    role: "Frontend and Backend Specialist",
+    image: "./images/ayush.jpeg",
     skills: [
       "System Design",
       "React.js",
@@ -102,31 +102,26 @@ export const TEAM: TeamMember[] = [
       "AWS",
       "TypeScript",
       "Next.js",
-      "Node.js API",
-      "React",
       "Node.js",
-      "Gemini AI",
-      "Dynamic API",
       "Angular",
       "MVC",
-      "HTML5",
+      "HTML",
       "Bootstrap",
-      "CSS3",
+      "CSS",
       "JavaScript",
       "MongoDB",
-      "wordpress",
       "python",
       "docker",
     ],
     socials: {
-      github: "https://github.com/",
-      linkedin: "https://www.linkedin.com/in/naveen-saini-78201a293/",
-      LiveDemo: "https://my-portfolio-azure-omega-11.vercel.app/",
+      github: "https://github.com/Jeratos",
+      linkedin: "https://www.linkedin.com/in/ayush-chouhan-31a064222/",
+      LiveDemo: "www.kalling.site",
     },
   },
   {
     id: "3",
-    name: "barinder singh",
+    name: "Barinder Singh",
     role: "DevOps Engineer",
     image: "https://picsum.photos/seed/marcus/400/400",
     skills: [
@@ -160,41 +155,36 @@ export const TEAM: TeamMember[] = [
   },
   {
     id: "4",
-    name: "arijit mondal",
-    role: "Backend Developer",
-    image: "https://picsum.photos/seed/elena/400/400",
+    name: "Arijit Mondal",
+    role: "Full-Stack Developer",
+    image: "./images/arijit.jpg",
     skills: [
       "System Design",
-      "React.js",
-      "Tailwind CSS",
       "AWS",
-      "TypeScript",
+      "React.js",
       "Next.js",
-      "Node.js API",
-      "React",
-      "Node.js",
-      "Gemini AI",
-      "Dynamic API",
-      "Angular",
-      "MVC",
-      "HTML5",
-      "Bootstrap",
-      "CSS3",
       "JavaScript",
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "HTML",
+      "CSS",
+      "Bootstrap",
+      "Tailwind CSS",
       "MongoDB",
-      "wordpress",
+      "SQL",
       "python",
       "docker",
     ],
     socials: {
-      github: "https://github.com/",
-      linkedin: "https://www.linkedin.com/in/naveen-saini-78201a293/",
-      LiveDemo: "https://my-portfolio-azure-omega-11.vercel.app/",
+      github: "https://github.com/Arijit-mondal099",
+      linkedin: "https://www.linkedin.com/in/arijit-mondal-211217287",
+      LiveDemo: "https://arijitmondal.vercel.app/",
     },
   },
   {
     id: "5",
-    name: "vikas rana",
+    name: "Vikas Rana",
     role: "Product Designer",
     image: "https://picsum.photos/seed/jordan/400/400",
     skills: [
@@ -228,7 +218,7 @@ export const TEAM: TeamMember[] = [
   },
   {
     id: "6",
-    name: "alok raj ",
+    name: "Alok Raj ",
     role: "QA Automation",
     image: "https://picsum.photos/seed/riley/400/400",
     skills: [
@@ -265,24 +255,21 @@ export const TEAM: TeamMember[] = [
 export const PROJECTS: Project[] = [
   {
     id: "1",
-    title: "Quantum Dashboard",
-    category: "SaaS Platform",
-    image: "https://picsum.photos/seed/quantum/800/600",
-    tags: ["React", "D3.js", "Firebase"],
+    title: "DroneTv",
+    category: "Full-Stack AI Powered SAAS Application.",
+    image: "./images/dronetv.png",
+    tags: ["React", "Typescript", "OpenAI", "Tailwind CSS", "AWS"],
+    github: "https://github.com/gisipageums-droid/Dronetv/tree/main",
+    liveUrl: "www.dronetv.in",
   },
   {
     id: "2",
-    title: "EcoSphere App",
-    category: "Mobile Application",
-    image: "https://picsum.photos/seed/eco/800/600",
-    tags: ["React Native", "Node.js"],
-  },
-  {
-    id: "3",
-    title: "Nebula API",
-    category: "Developer Tools",
-    image: "https://picsum.photos/seed/nebula/800/600",
-    tags: ["TypeScript", "AWS", "Go"],
+    title: "Health",
+    category: "Full-Stack Doctor appointment booking application.",
+    image: "./images/health.png",
+    tags: ["React.js", "Node.js", "Express.js", "MongoDB"],
+    github: "https://github.com/Arijit-mondal099/health",
+    liveUrl: "https://health-frontend-c4x4.onrender.com/",
   },
 ];
 
@@ -324,7 +311,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "CTO",
     company: "FinTech Hub",
     content:
-      "CodeCraft transformed our legacy platform into a high-speed React dashboard in record time. Their attention to technical detail is unmatched.",
+      "What we build next transformed our legacy platform into a high-speed React dashboard in record time. Their attention to technical detail is unmatched.",
     avatar: "./images/default_avatar.png",
   },
   {
@@ -333,7 +320,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "Product Owner",
     company: "EcoStream",
     content:
-      "The mobile app they built using React Native feels native and handles massive traffic flawlessly. Engineering at its finest.",
+      "The web app they built using React/next handles massive traffic flawlessly. Engineering at its finest.",
     avatar: "./images/default_avatar.png",
   },
   {
@@ -342,7 +329,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "Founder",
     company: "Healthhepta",
     content:
-      "Building a scalable healthcare platform was smooth and reliable thanks to the secure, high-performance system CodeCraft delivered. It helped us serve patients efficiently while maintaining data privacy and trust.",
+      "Building a scalable healthcare platform was smooth and reliable thanks to the secure, high-performance system what we build next delivered. It helped us serve patients efficiently while maintaining data privacy and trust.",
     avatar: "./images/default_avatar.png",
   },
 ];
@@ -362,11 +349,9 @@ export const TECH_STACK = [
   // Backend
   "Node.js",
   "Express.js",
-  "NestJS",
   "Python",
   "Django",
   "FastAPI",
-  "REST API",
 
   // Databases
   "MongoDB",
@@ -396,5 +381,4 @@ export const TECH_STACK = [
   "SEO",
   "Razorpay",
   "JWT Authentication",
-  "OAuth",
 ];
