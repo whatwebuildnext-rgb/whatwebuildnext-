@@ -116,7 +116,7 @@ export const TEAM: TeamMember[] = [
     socials: {
       github: "https://github.com/Jeratos",
       linkedin: "https://www.linkedin.com/in/ayush-chouhan-31a064222/",
-      LiveDemo: "www.kalling.site",
+      LiveDemo: "https://www.kalling.site/",
     },
   },
   {
