@@ -246,7 +246,7 @@ export const TEAM: TeamMember[] = [
     ],
     socials: {
       github: "https://github.com/raj45alok",
-      linkedin: "https://www.linkedin.com/in/naveen-saini-78201a293/",
+      linkedin: "https://www.linkedin.com/in/alokraj54/",
       LiveDemo: "https://my-portfolio-azure-omega-11.vercel.app/",
     },
   },
