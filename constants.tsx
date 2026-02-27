@@ -94,7 +94,7 @@ export const TEAM: TeamMember[] = [
     id: "2",
     name: "Ayush Singh Chohan",
     role: "Frontend and Backend Specialist",
-    image: "./images/ayush.jpeg",
+    image: "./images/ayush1.png",
     skills: [
       "System Design",
       "React.js",
@@ -220,7 +220,7 @@ export const TEAM: TeamMember[] = [
     id: "6",
     name: "Alok Raj ",
     role: "QA Automation",
-    image: "https://picsum.photos/seed/riley/400/400",
+    image: "./images/alok.jpeg",
     skills: [
       "System Design",
       "React.js",
