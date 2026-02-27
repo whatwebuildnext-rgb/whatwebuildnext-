@@ -245,7 +245,7 @@ export const TEAM: TeamMember[] = [
       "docker",
     ],
     socials: {
-      github: "https://github.com/",
+      github: "https://github.com/raj45alok",
       linkedin: "https://www.linkedin.com/in/naveen-saini-78201a293/",
       LiveDemo: "https://my-portfolio-azure-omega-11.vercel.app/",
     },
