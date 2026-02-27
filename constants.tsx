@@ -219,7 +219,7 @@ export const TEAM: TeamMember[] = [
   {
     id: "6",
     name: "Alok Raj ",
-    role: "QA Automation",
+    role: "Cloud Architect",
     image: "./images/alok.jpeg",
     skills: [
       "System Design",
@@ -237,7 +237,7 @@ export const TEAM: TeamMember[] = [
       "MVC",
       "HTML5",
       "Bootstrap",
-      "CSS3",
+      "CSS3", 
       "JavaScript",
       "MongoDB",
       "wordpress",
