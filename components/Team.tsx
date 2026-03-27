@@ -39,7 +39,7 @@ const TeamCard: React.FC<{ member: TeamMember }> = ({ member }) => {
       className="relative p-6 glass rounded-3xl group cursor-pointer"
     >
       <div
-        className="relative h-64 mb-6 rounded-2xl overflow-hidden"
+        className="relative h-72 mb-6 rounded-2xl overflow-hidden"
         style={{ transform: "translateZ(50px)" }}
       >
         <img
