@@ -58,14 +58,17 @@ export const Projects: React.FC = () => {
                 </p>
 
                 <div className="flex items-center gap-4">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    className="flex items-center gap-2 text-blue-400 text-xs font-bold uppercase tracking-widest"
+                  {
+                    project.github!="#" && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        className="flex items-center gap-2 text-blue-400 text-xs font-bold uppercase tracking-widest"
                   >
                     GitHub <ExternalLink size={14} />
                   </a>
-
+                    )
+                  }
                   <a
                     href={project.liveUrl}
                     target="_blank"
