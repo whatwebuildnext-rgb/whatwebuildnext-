@@ -88,7 +88,7 @@ export const TEAM: TeamMember[] = [
   },
   {
     id: "2",
-    name: "Ayush Singh Chohan",
+    name: "Ayush Singh Chouhan",
     role: "Frontend and Backend Specialist",
     image: "./images/ayush1.png",
     skills: [
