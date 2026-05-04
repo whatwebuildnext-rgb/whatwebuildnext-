@@ -53,6 +53,22 @@ export const SERVICES: Service[] = [
     icon: "Palette",
     tools: ["Figma", "Adobe XD", "Framer", "Design Systems"],
   },
+  {
+    id: "5",
+    title: "Mobile App Development",
+    description:
+      "Cross-platform mobile applications built with ract native, Flutter and Supabase for real-time data synchronization and performance.",
+    icon: "Smartphone",
+    tools: ["Flutter", "Dart", "Supabase", "socket.io", "React Native"],
+  },
+  {
+    id: "6",
+    title: "video editing",
+    description:
+      "Video editing service for creating engaging and professional videos tailored to your business needs.",
+    icon: "Video",
+    tools: ["Adobe Premiere Pro", "Adobe After Effects", "Final Cut Pro", "DaVinci Resolve"],
+  },
 ];
 
 export const TEAM: TeamMember[] = [
@@ -278,6 +294,33 @@ export const TEAM: TeamMember[] = [
       LiveDemo: "https://portfolio-ten-lilac-avdvtc47yu.vercel.app/",
     },
   }, 
+  {
+    id: "8",
+    name: "Kaif Reza",
+    role: "Video Editor",
+    image: "./images/kaif.jpeg",
+    skills: [
+      "Video Editing",
+      "Adobe Premiere Pro",
+      "Adobe Photoshop",
+      "CapCut Editing",
+      "Canva Design",
+      "AI Video Editing Tools",
+      "AI Voice / Voiceover Tools",
+      "Short-form Content Editing",
+      "Color Correction & Color Grading", 
+      "Transitions & Effects",
+      "Audio Editing & Sync",
+      "Storytelling & Content Structuring",
+      "Social Media Content Creation",
+      "Fast Delivery & Client Handling"
+    ],
+    socials: {
+      github: "",
+      linkedin: "",
+      LiveDemo: "",
+    },
+  }, 
 ];
 
 export const PROJECTS: Project[] = [
@@ -303,7 +346,7 @@ export const PROJECTS: Project[] = [
     id: "3",
     title: "PhishFarm",
     category: "Diagnosed and resolved critical bugs in the production environment, optimized application performance, and successfully managed end-to-end project deployment workflows.",
-    image: "./images/PhishFarm.png",
+    image: "./images/PhishFarm.jpeg",
     tags: ["React.js", "Node.js", "Express.js", "MongoDB","typescript","tailwind css"],
     github: "#",
     liveUrl: "https://www.phishfarm.com",
@@ -315,16 +358,16 @@ export const PROJECTS: Project[] = [
     image: "./images/ETS.png",
     tags: ["React.js", "Node.js", "Express.js", "MongoDB","AWS","typescript","tailwind css"],
     github: "#",
-    liveUrl: "#",
+    liveUrl: "https://ipageets.vercel.app/",
   },
   {
     id: "5",
-    title: "AI Assistance Platform",
-    category: "An intelligent chatbot assistant that takes user prompts and provides comprehensive details about company description, pricing, services, and contact information",
-    image: "./images/Ai-assistance (1).png",
-    tags: ["React.js", "Node.js", "Express.js", "MongoDB","openai","socket.io","typescript","tailwind css"],
+    title: "aiyuh app",
+    category: "Aiyuh is a health tracking mobile application built using Flutter and Supabase that monitors user health metrics and provides personalized diet recommendations based on real-time data and user inputs.",
+    image: "./images/aiyuh.jpeg",
+    tags: ["Flutter", "Dart", "Supabase", "postgreSQL", "socket.io"],
     github: "#",
-    liveUrl: "https://ai-assistance-ruddy.vercel.app/",
+    liveUrl: "https://play.google.com/store/apps/details?id=com.aiyuh.user&pcampaignid=web_share",
   },
   {
     id: "6",
