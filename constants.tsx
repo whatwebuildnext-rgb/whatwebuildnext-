@@ -63,7 +63,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: "6",
-    title: "video editing",
+    title: "Video Editing",
     description:
       "Video editing service for creating engaging and professional videos tailored to your business needs.",
     icon: "Video",
