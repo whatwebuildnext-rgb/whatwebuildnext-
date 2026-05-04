@@ -116,7 +116,7 @@ export const Contact: React.FC = () => {
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            {/* <form onSubmit={handleSubmit} className="space-y-6">
               <div className="group">
                 <label className="block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 group-focus-within:text-blue-500 transition-colors">
                   Name
@@ -181,7 +181,7 @@ export const Contact: React.FC = () => {
                   </>
                 )}
               </motion.button>
-            </form>
+            </form> */}
           </div>
         </div>
       </div>
