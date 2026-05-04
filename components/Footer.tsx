@@ -158,7 +158,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Newsletter Section */}
-        <div className="py-8 border-t border-white/5">
+        {/* <div className="py-8 border-t border-white/5">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
               <h3 className="text-white font-bold text-lg mb-2">
@@ -182,7 +182,7 @@ export const Footer: React.FC = () => {
               </button>
             </form>
           </div>
-        </div>
+        </div> */}
 
         {/* Bottom Bar */}
         <div className="py-8 border-t border-white/5">
