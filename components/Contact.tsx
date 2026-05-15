@@ -52,10 +52,33 @@ export const Contact: React.FC = () => {
     }
   };
 
+  const [contactInfo, setContactInfo] = useState({
+    location: "India",
+    email: "whatwebuildnext@gmail.com",
+    phone: "+91 8805388474",
+  });
+
+  const fetchContactInfo = async () => {
+    const { data, error } = await supabase
+      .from("contact_details")
+      .select("*")
+      .maybeSingle();
+
+    if (error) {
+      console.error("Error fetching contact info:", error);
+    } else if (data) {
+      setContactInfo({
+        location: data.location || "India",
+        email: data.email || "whatwebuildnext@gmail.com",
+        phone: data.phone || "+91 8805388474",
+      });
+    }
+  };
+
   useEffect(() => {
     fetchLinks();
+    fetchContactInfo();
   }, []);
-
 
   const handlesubmit = async (e: any) => {
     e.preventDefault();
@@ -110,7 +133,7 @@ export const Contact: React.FC = () => {
                   <h4 className="text-xs font-bold uppercase tracking-widest text-blue-500 mb-2">
                     Location
                   </h4>
-                  <p className="text-slate-300">India</p>
+                  <p className="text-slate-300">{contactInfo.location}</p>
                 </div>
 
                 <div>
@@ -118,10 +141,10 @@ export const Contact: React.FC = () => {
                     Inquiries
                   </h4>
                   <a
-                    href="mailto:whatwebuildnext@gmail.com"
+                    href={`mailto:${contactInfo.email}`}
                     className="text-slate-300 hover:underline"
                   >
-                    whatwebuildnext@gmail.com
+                    {contactInfo.email}
                   </a>
                 </div>
 
@@ -130,10 +153,10 @@ export const Contact: React.FC = () => {
                     Phone
                   </h4>
                   <a
-                    href="tel:+918805388474"
+                    href={`tel:${contactInfo.phone.replace(/\s+/g, '')}`}
                     className="text-slate-300 hover:underline"
                   >
-                    +91 8805388474
+                    {contactInfo.phone}
                   </a>
                 </div>
 

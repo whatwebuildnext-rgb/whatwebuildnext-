@@ -82,12 +82,36 @@ export const Footer: React.FC = () => {
     }
   };
 
+  const [contactInfo, setContactInfo] = useState({
+    location: "India",
+    email: "whatwebuildnext@gmail.com",
+    phone: "+91 8805388474",
+  });
+
+  const fetchContactInfo = async () => {
+    const { data, error } = await supabase
+      .from("contact_details")
+      .select("*")
+      .maybeSingle();
+
+    if (error) {
+      console.error("Error fetching contact info:", error);
+    } else if (data) {
+      setContactInfo({
+        location: data.location || "India",
+        email: data.email || "whatwebuildnext@gmail.com",
+        phone: data.phone || "+91 8805388474",
+      });
+    }
+  };
+
   useEffect(() => {
     fetchLinks();
+    fetchContactInfo();
   }, []);
 
   return (
-    <footer className="relative border-t border-white/5 mt-12 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+    <footer className="relative border-t border-white/5 mt-12 bg-linear-to-b from-slate-950 via-slate-900 to-slate-950">
       {/* Decorative gradient orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
@@ -101,7 +125,7 @@ export const Footer: React.FC = () => {
           {/* Brand Section */}
           <div className="lg:col-span-2 space-y-6">
             <div className="flex items-center gap-3 group">
-              <div className="bg-gradient-to-br from-blue-600 to-blue-700 h-12 w-12 overflow-hidden rounded-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg shadow-blue-600/20">
+              <div className="bg-linear-to-br from-blue-600 to-blue-700 h-12 w-12 overflow-hidden rounded-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg shadow-blue-600/20">
                 <img
                   src="/images/logo.jpeg"
                   alt="What We Build Next Logo"
@@ -133,7 +157,7 @@ export const Footer: React.FC = () => {
                 <MapPin className="w-4 h-4 text-blue-500" />
 
                 <span className="text-slate-300">
-                  India
+                  {contactInfo.location}
                 </span>
               </div>
 
@@ -141,10 +165,10 @@ export const Footer: React.FC = () => {
                 <Phone className="w-4 h-4 text-blue-500" />
 
                 <a
-                  href="tel:+918805388474"
+                  href={`tel:${contactInfo.phone.replace(/\s+/g, '')}`}
                   className="text-slate-300 hover:underline"
                 >
-                  +91 8805388474
+                  {contactInfo.phone}
                 </a>
               </div>
 
@@ -152,10 +176,10 @@ export const Footer: React.FC = () => {
                 <Mail className="w-4 h-4 text-blue-500" />
 
                 <a
-                  href="mailto:whatwebuildnext@gmail.com"
+                  href={`mailto:${contactInfo.email}`}
                   className="text-slate-300 hover:underline"
                 >
-                  whatwebuildnext@gmail.com
+                  {contactInfo.email}
                 </a>
               </div>
             </div>

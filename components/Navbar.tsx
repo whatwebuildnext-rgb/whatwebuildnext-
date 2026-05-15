@@ -5,7 +5,7 @@ import { Menu, X, Code2 } from 'lucide-react';
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { scrollY } = useScroll();
-  
+
   const navBackground = useTransform(
     scrollY,
     [0, 50],
@@ -50,17 +50,29 @@ export const Navbar: React.FC = () => {
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    // Force the browser to scroll to top on refresh
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, []);
+
   return (
     <>
       <motion.nav
-        style={{ 
+        style={{
           backgroundColor: navBackground,
-          borderColor: navBorder 
+          borderColor: navBorder
         }}
         className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300 border-b py-4"
       >
         <div className="container mx-auto px-6 flex items-center justify-between">
-          <motion.a 
+          <motion.a
             href="#"
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
             initial={{ opacity: 0, x: -20 }}
@@ -111,7 +123,7 @@ export const Navbar: React.FC = () => {
       {/* Mobile Menu Overlay - Fixed positioning */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}

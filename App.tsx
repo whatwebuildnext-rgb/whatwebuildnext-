@@ -65,13 +65,19 @@ const App: React.FC = () => {
       <main className="relative z-10">
         <AnimatePresence mode='wait'>
           {isViewingAllProjects ? (
-            <PortfolioPage 
+            <motion.div
               key="portfolio"
-              onBack={() => {
-                setIsViewingAllProjects(false);
-                window.scrollTo({ top: 0 });
-              }} 
-            />
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <PortfolioPage 
+                onBack={() => {
+                  setIsViewingAllProjects(false);
+                  window.scrollTo({ top: 0 });
+                }} 
+              />
+            </motion.div>
           ) : (
             <motion.div
               key="landing"
@@ -113,8 +119,8 @@ const App: React.FC = () => {
       </AnimatePresence>
 
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-slate-950 via-transparent to-transparent opacity-50" />
-        <div className="absolute bottom-0 left-0 w-full h-screen bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-50" />
+        <div className="absolute top-0 left-0 w-full h-screen bg-linear-to-b from-slate-950 via-transparent to-transparent opacity-50" />
+        <div className="absolute bottom-0 left-0 w-full h-screen bg-linear-to-t from-slate-950 via-transparent to-transparent opacity-50" />
       </div>
     </motion.div>
   );

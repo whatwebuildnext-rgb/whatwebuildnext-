@@ -88,7 +88,7 @@ export const PortfolioPage = ({ onBack }: { onBack: () => void }) => {
 
         <div className="mb-16">
           <h1 className="text-6xl md:text-7xl font-black text-white mb-4 tracking-tighter">
-            Full <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">Portfolio.</span>
+            Full <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-indigo-400 to-purple-400">Portfolio.</span>
           </h1>
           <p className="text-slate-400 text-lg max-w-2xl font-light">
             Explore our complete archive of digital excellence. From complex web ecosystems to innovative mobile solutions.
@@ -121,7 +121,7 @@ export const PortfolioPage = ({ onBack }: { onBack: () => void }) => {
                       alt={project.title}
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#020617] to-transparent opacity-60" />
+                    <div className="absolute inset-0 bg-linear-to-t from-[#020617] to-transparent opacity-60" />
                     <div className="absolute top-6 left-6 px-4 py-2 rounded-full bg-blue-600/20 backdrop-blur-xl border border-white/10 text-[10px] font-black uppercase tracking-[0.2em] text-blue-400">
                       {project.team?.name || "Independent"}
                     </div>
@@ -159,7 +159,7 @@ export const PortfolioPage = ({ onBack }: { onBack: () => void }) => {
                           href={project.live_url}
                           target="_blank"
                           rel="noreferrer"
-                          className="h-14 px-10 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-[0_20px_40px_rgba(37,99,235,0.25)] hover:scale-105 active:scale-95 transition-all text-xs font-black uppercase tracking-[0.2em] flex items-center gap-3"
+                          className="h-14 px-10 rounded-2xl bg-linear-to-r from-blue-600 to-indigo-600 text-white shadow-[0_20px_40px_rgba(37,99,235,0.25)] hover:scale-105 active:scale-95 transition-all text-xs font-black uppercase tracking-[0.2em] flex items-center gap-3"
                         >
                           Live Preview <Globe size={16} />
                         </a>
