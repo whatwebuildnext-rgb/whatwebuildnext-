@@ -16,10 +16,12 @@ import { ParticleBackground } from './components/ParticleBackground';
 import { CustomCursor } from './components/CustomCursor';
 import { Preloader } from './components/Preloader';
 import { ChevronUp } from 'lucide-react';
+import { PortfolioPage } from './pages/PortfolioPage';
 
 const App: React.FC = () => {
   const { scrollYProgress, scrollY } = useScroll();
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isViewingAllProjects, setIsViewingAllProjects] = useState(false);
 
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -58,27 +60,40 @@ const App: React.FC = () => {
       style={{ filter: `hue-rotate(${hueRotate}deg)` }}
       className="relative min-h-screen selection:bg-blue-500/30 selection:text-blue-200"
     >
-      <Preloader />
-      <CustomCursor />
-      <ParticleBackground />
-      
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-purple-600 origin-left z-[100]"
-        style={{ scaleX }}
-      />
-
       <Navbar />
       
       <main className="relative z-10">
-        <Hero />
-        <About />
-        <Services />
-        <Process />
-        <Projects />
-        <Technologies />
-        <Team />
-        <Testimonials />
-        <Contact />
+        <AnimatePresence mode='wait'>
+          {isViewingAllProjects ? (
+            <PortfolioPage 
+              key="portfolio"
+              onBack={() => {
+                setIsViewingAllProjects(false);
+                window.scrollTo({ top: 0 });
+              }} 
+            />
+          ) : (
+            <motion.div
+              key="landing"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <Hero />
+              <About />
+              <Services />
+              <Process />
+              <Projects onViewAll={() => {
+                setIsViewingAllProjects(true);
+                window.scrollTo({ top: 0 });
+              }} />
+              <Technologies />
+              <Team />
+              <Testimonials />
+              <Contact />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </main>
 
       <Footer />

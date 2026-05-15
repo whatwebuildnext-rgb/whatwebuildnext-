@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
+
+import { supabase } from "@/utils/supabase";
 import { motion } from "framer-motion";
+import Thanks from "./thanks";
 import {
   Send,
   Loader2,
@@ -9,6 +12,7 @@ import {
   Linkedin,
   Youtube,
   Instagram,
+  MessageCircle,
 } from "lucide-react";
 
 export const Contact: React.FC = () => {
@@ -18,38 +22,72 @@ export const Contact: React.FC = () => {
     email: "",
     message: "",
   });
+  const [links, setLinks] = useState<any[]>([]);
+  const [isThanksOpen, setIsThanksOpen] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("loading");
-    // Simulate API call
-    setTimeout(() => {
-      setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setStatus("idle"), 3000);
-    }, 2000);
+
+
+  const iconMap: any = {
+    github: Github,
+    linkedin: Linkedin,
+    instagram: Instagram,
+    youtube: Youtube,
+    twitter: Twitter,
+    whatsapp: MessageCircle,
+  };
+  const fetchLinks = async () => {
+    const { data, error } = await supabase
+      .from("social_links")
+      .select("*")
+      .eq("status", "active")
+      .order("created_at", {
+        ascending: false,
+      });
+
+    if (error) {
+      console.error(error);
+    } else {
+
+      setLinks(data || []);
+    }
   };
 
-  const socialLinks = [
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-    {
-      icon: Github,
-      href: "https://github.com/whatwebuildnext-rgb",
-      label: "GitHub",
-    },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    {
-      icon: Youtube,
-      href: "https://youtube.com/@whatwebuildnext?si=8KvKN7LoiixmuM6r",
-      label: "YouTube",
-    },
-    {
-      icon: Instagram,
-      href: "https://www.instagram.com/whatwebuildnext?igsh=czZ0aDFvdGZnenB3",
-      label: "Instagram",
-    },
-  ];
+  useEffect(() => {
+    fetchLinks();
+  }, []);
 
+
+  const handlesubmit = async (e: any) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    const obj = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      message: e.target.message.value,
+    };
+
+    try {
+      const { error } = await supabase
+        .from("contact_inquiries")
+        .insert([obj]);
+
+      if (error) throw error;
+
+      setStatus("success");
+      e.target.reset(); // Clear the form
+      
+      // Small delay before showing modal to allow success state to be seen
+      setTimeout(() => {
+        setIsThanksOpen(true);
+        setStatus("idle");
+      }, 500);
+
+    } catch (error) {
+      console.error("Error submitting inquiry:", error);
+      setStatus("idle");
+    }
+  };
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-purple-600/5 rounded-full blur-[150px] pointer-events-none" />
@@ -101,22 +139,33 @@ export const Contact: React.FC = () => {
 
                 {/* Social Links */}
                 <div className="flex gap-3 pt-2">
-                  {socialLinks.map((social) => (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      aria-label={social.label}
-                      target="_blank"
-                      className="w-10 h-10 rounded-lg bg-white/5 hover:bg-blue-600 border border-white/10 hover:border-blue-500 flex items-center justify-center transition-all duration-300 group"
-                    >
-                      <social.icon className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
-                    </a>
-                  ))}
+                  {links.map((social, index) => {
+                    const Icon = iconMap[social.platform_name?.toLowerCase()];
+                    return (
+                      <a
+                        key={index}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-10 h-10 rounded-lg bg-white/5 hover:bg-blue-600 border border-white/10 hover:border-blue-500 flex items-center justify-center transition-all duration-300 group"
+                      >
+                        {Icon ? (
+                          <Icon className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
+                        ) : social.icon_url ? (
+                          <img
+                            src={social.icon_url}
+                            alt={social.platform_name}
+                            className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity"
+                          />
+                        ) : null}
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             </div>
 
-            {/* <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handlesubmit} className="space-y-6">
               <div className="group">
                 <label className="block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 group-focus-within:text-blue-500 transition-colors">
                   Name
@@ -124,10 +173,7 @@ export const Contact: React.FC = () => {
                 <input
                   required
                   type="text"
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
+                  name="name"
                   className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:outline-none focus:border-blue-500 transition-all text-white"
                   placeholder="John Doe"
                 />
@@ -139,10 +185,7 @@ export const Contact: React.FC = () => {
                 <input
                   required
                   type="email"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
+                  name="email"
                   className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:outline-none focus:border-blue-500 transition-all text-white"
                   placeholder="john@example.com"
                 />
@@ -154,10 +197,7 @@ export const Contact: React.FC = () => {
                 <textarea
                   required
                   rows={4}
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
+                  name="message"
                   className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:outline-none focus:border-blue-500 transition-all text-white resize-none"
                   placeholder="Tell us about your project..."
                 />
@@ -181,10 +221,15 @@ export const Contact: React.FC = () => {
                   </>
                 )}
               </motion.button>
-            </form> */}
+            </form>
           </div>
         </div>
       </div>
+      
+      <Thanks 
+        isOpen={isThanksOpen} 
+        onClose={() => setIsThanksOpen(false)} 
+      />
     </section>
   );
 };
