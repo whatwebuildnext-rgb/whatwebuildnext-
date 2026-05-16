@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { SERVICES } from '../constants';
 import { Service } from '../types';
 import * as LucideIcons from 'lucide-react';
+import { supabase } from '../utils/supabase';
 
 const ServiceIcon = ({ name }: { name: string }) => {
   const Icon = (LucideIcons as any)[name];
@@ -77,6 +78,70 @@ const ServiceCard: React.FC<{ service: Service, idx: number }> = ({ service, idx
 };
 
 export const Services: React.FC = () => {
+  const [dynamicServices, setDynamicServices] = React.useState<Service[]>([]);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const fetchDynamicServices = async () => {
+      setLoading(true);
+      try {
+        // Fetch categories that are active
+        const { data: categories, error: catError } = await supabase
+          .from('categories')
+          .select('*')
+          .eq('status', true)
+          .order('id', { ascending: true });
+
+        if (catError) throw catError;
+
+        // Fetch skills that are active
+        const { data: skills, error: skillError } = await supabase
+          .from('skills')
+          .select('*')
+          .eq('status', true);
+
+        if (skillError) throw skillError;
+
+        // Map categories to Service structure
+        const mappedServices: Service[] = categories.map((cat: any) => {
+          // Get skills for this category
+          const catSkills = skills
+            .filter((s: any) => s.category_id === cat.id)
+            .map((s: any) => s.skill_name);
+
+          // Icon mapping logic
+          let icon = 'Globe';
+          const name = cat.cat_name.toLowerCase();
+          if (name.includes('frontend')) icon = 'Palette';
+          else if (name.includes('backend')) icon = 'Server';
+          else if (name.includes('database')) icon = 'Database';
+          else if (name.includes('cloud') || name.includes('devops')) icon = 'Cloud';
+          else if (name.includes('cms')) icon = 'Layout';
+          else if (name.includes('mobile')) icon = 'Smartphone';
+          else if (name.includes('video')) icon = 'Video';
+
+          return {
+            id: cat.id.toString(),
+            title: cat.cat_name,
+            description: `We provide professional ${cat.cat_name} solutions using the latest industry standards and high-performance technologies.`,
+            icon: icon,
+            tools: catSkills.length > 0 ? catSkills : ['Engineering', 'Architecture', 'Strategy']
+          };
+        });
+
+        setDynamicServices(mappedServices);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+        // Fallback to static services if DB fetch fails
+        setDynamicServices(SERVICES);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDynamicServices();
+  }, []);
+
   return (
     <section id="services" className="py-32 relative">
       <div className="container mx-auto px-6">
@@ -108,9 +173,16 @@ export const Services: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {SERVICES.map((service, idx) => (
-            <ServiceCard key={service.id} service={service} idx={idx} />
-          ))}
+          {loading ? (
+            // Skeleton loader
+            [1, 2, 3, 4].map(i => (
+              <div key={i} className="h-64 glass rounded-[32px] animate-pulse" />
+            ))
+          ) : (
+            dynamicServices.map((service, idx) => (
+              <ServiceCard key={service.id} service={service} idx={idx} />
+            ))
+          )}
         </div>
       </div>
     </section>

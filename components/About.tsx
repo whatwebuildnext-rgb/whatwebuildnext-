@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Target, Users, Zap, ShieldCheck } from 'lucide-react';
+import { supabase } from '../utils/supabase';
 
 const StatCard = ({ label, value, icon: Icon }: { label: string, value: string, icon: any }) => (
   <motion.div 
@@ -17,6 +18,37 @@ const StatCard = ({ label, value, icon: Icon }: { label: string, value: string, 
 );
 
 export const About: React.FC = () => {
+  const [stats, setStats] = React.useState({
+    deployments: '10+',
+    engineers: '6+',
+    uptime: '99.9%',
+    awards: '5'
+  });
+
+  React.useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const [portfolioCount, teamCount, settings] = await Promise.all([
+          supabase.from('portfolio').select('*', { count: 'exact', head: true }),
+          supabase.from('team').select('*', { count: 'exact', head: true }),
+          supabase.from('contact_details').select('uptime, awards').maybeSingle()
+        ]);
+
+        setStats(prev => ({
+          ...prev,
+          deployments: portfolioCount.count ? `${portfolioCount.count}+` : prev.deployments,
+          engineers: teamCount.count ? `${teamCount.count}+` : prev.engineers,
+          uptime: settings?.data?.uptime || prev.uptime,
+          awards: settings?.data?.awards || prev.awards,
+        }));
+      } catch (error) {
+        console.error("Error fetching stats:", error);
+      }
+    };
+
+    fetchStats();
+  }, []);
+
   return (
     <section id="about" className="py-32 relative overflow-hidden">
       <div className="container mx-auto px-6">
@@ -57,10 +89,10 @@ export const About: React.FC = () => {
           </motion.div>
 
           <div className="grid grid-cols-2 gap-4 lg:gap-8">
-            <StatCard label="Deployments" value="10+" icon={Zap} />
-            <StatCard label="Engineers" value="6+" icon={Users} />
-            <StatCard label="Client Uptime" value="99.9%" icon={ShieldCheck} />
-            <StatCard label="Awards" value="5" icon={Target} />
+            <StatCard label="Deployments" value={stats.deployments} icon={Zap} />
+            <StatCard label="Engineers" value={stats.engineers} icon={Users} />
+            <StatCard label="Client Uptime" value={stats.uptime} icon={ShieldCheck} />
+            <StatCard label="Awards" value={stats.awards} icon={Target} />
           </div>
         </div>
       </div>
